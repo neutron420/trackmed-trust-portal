@@ -23,6 +23,21 @@ export const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const targetId = href.replace("#", "");
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navbarHeight = 64; // Height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: "smooth"
+      });
+    }
+    setIsOpen(false);
+  };
+
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
@@ -45,6 +60,7 @@ export const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
               >
                 {link.label}
@@ -85,7 +101,7 @@ export const Navbar = () => {
                   key={link.label}
                   href={link.href}
                   className="text-muted-foreground hover:text-foreground hover:bg-muted transition-colors font-medium py-3 px-4 rounded-lg"
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
                 </a>
