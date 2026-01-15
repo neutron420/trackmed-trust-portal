@@ -4,6 +4,7 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Features } from "@/components/Features";
 import { AppShowcase } from "@/components/AppShowcase";
+import { DemoVideoSection } from "@/components/DemoVideoSection";
 import { Business } from "@/components/Business";
 import { Testimonials } from "@/components/Testimonials";
 import { Security } from "@/components/Security";
@@ -20,6 +21,7 @@ const Index = () => {
       <HowItWorks />
       <Features />
       <AppShowcase />
+      <DemoVideoSection />
       <Business />
       <Testimonials />
       <Security />

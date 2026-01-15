@@ -23,16 +23,24 @@ export const AnimatedCounter = ({
   useEffect(() => {
     if (!isInView) return;
 
-    let startTime: number;
+    // Optimized animation with reduced calculations
+    const startTime = performance.now();
     let animationFrame: number;
+    let lastValue = 0;
 
     const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      const elapsed = timestamp - startTime;
+      const progress = Math.min(elapsed / (duration * 1000), 1);
       
-      // Easing function for smooth animation
-      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-      setCount(Math.floor(easeOutQuart * end));
+      // Optimized easing - use simpler calculation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      const currentValue = Math.floor(easeOut * end);
+      
+      // Only update if value changed (reduces re-renders)
+      if (currentValue !== lastValue) {
+        setCount(currentValue);
+        lastValue = currentValue;
+      }
 
       if (progress < 1) {
         animationFrame = requestAnimationFrame(animate);
