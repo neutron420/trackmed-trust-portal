@@ -26,17 +26,15 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
       isScrolled 
-        ? "bg-white shadow-sm border-b border-border" 
-        : "bg-[#0a1628]/90 backdrop-blur-md"
+        ? "bg-white shadow-md border-b border-border" 
+        : "bg-white/95 backdrop-blur-md shadow-sm"
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2.5">
             <img src={logo} alt="TrackMed" className="h-8 w-auto" />
-            <span className={`text-base font-display font-bold transition-colors ${
-              isScrolled ? 'text-foreground' : 'text-white'
-            }`}>
+            <span className="text-base font-display font-bold text-foreground">
               TrackMed
             </span>
           </a>
@@ -47,11 +45,7 @@ export const Navbar = () => {
               <a
                 key={link.label}
                 href={link.href}
-                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                  isScrolled 
-                    ? 'text-muted-foreground hover:text-foreground hover:bg-muted' 
-                    : 'text-white/80 hover:text-white hover:bg-white/10'
-                }`}
+                className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
               >
                 {link.label}
               </a>
@@ -63,11 +57,7 @@ export const Navbar = () => {
             <Button 
               variant="ghost" 
               size="sm" 
-              className={`transition-all ${
-                isScrolled 
-                  ? 'text-muted-foreground hover:text-foreground hover:bg-muted' 
-                  : 'text-white/80 hover:text-white hover:bg-white/10'
-              }`}
+              className="text-muted-foreground hover:text-foreground hover:bg-muted"
             >
               Sign In
             </Button>
@@ -78,11 +68,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isScrolled 
-                ? 'text-foreground hover:bg-muted' 
-                : 'text-white hover:bg-white/10'
-            }`}
+            className="lg:hidden p-2 rounded-lg text-foreground hover:bg-muted transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >

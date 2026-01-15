@@ -100,12 +100,12 @@ export const Hero = () => {
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
-              {/* Phone Frame */}
-              <div className="relative w-[260px] md:w-[280px] animate-float">
-                <div className="bg-gray-900 rounded-[2.5rem] p-2 shadow-2xl ring-1 ring-white/10">
-                  <div className="bg-white rounded-[2rem] overflow-hidden">
+              {/* Phone Frame - Larger with better shadows */}
+              <div className="relative w-[300px] md:w-[340px] animate-float">
+                <div className="bg-gray-900 rounded-[3rem] p-2.5 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5),0_30px_60px_-30px_rgba(0,0,0,0.4)] ring-1 ring-white/20">
+                  <div className="bg-white rounded-[2.5rem] overflow-hidden">
                     {/* Screen Content */}
-                    <div className="h-[540px] bg-gradient-to-b from-gray-50 to-white p-4">
+                    <div className="h-[620px] bg-gradient-to-b from-gray-50 to-white p-5">
                       {/* Status Bar */}
                       <div className="flex justify-between items-center text-[10px] text-gray-400 mb-5">
                         <span className="font-medium">9:41</span>
@@ -173,34 +173,34 @@ export const Hero = () => {
                 </div>
               </div>
 
-              {/* Floating Badge */}
+              {/* Floating Badge - Larger */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.8 }}
-                className="absolute -left-6 top-1/4 bg-white rounded-xl p-3 shadow-xl border border-gray-100 hidden md:block animate-float-slow"
+                className="absolute -left-12 top-1/4 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float-slow"
               >
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-full gradient-accent flex items-center justify-center">
-                    <Check className="w-4 h-4 text-white" />
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full gradient-accent flex items-center justify-center shadow-md">
+                    <Check className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <p className="text-[11px] font-semibold text-gray-900">100% Verified</p>
-                    <p className="text-[9px] text-gray-500">Authentic Medicine</p>
+                    <p className="text-sm font-semibold text-gray-900">100% Verified</p>
+                    <p className="text-xs text-gray-500">Authentic Medicine</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Stats Badge */}
+              {/* Stats Badge - Larger */}
               <motion.div 
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 1 }}
-                className="absolute -right-4 bottom-1/4 bg-white rounded-xl p-3 shadow-xl border border-gray-100 hidden md:block animate-float"
+                className="absolute -right-8 bottom-1/4 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float"
               >
                 <div className="text-center">
-                  <p className="text-lg font-display font-bold text-accent">99.9%</p>
-                  <p className="text-[9px] text-gray-500">Accuracy Rate</p>
+                  <p className="text-2xl font-display font-bold text-accent">99.9%</p>
+                  <p className="text-xs text-gray-500">Accuracy Rate</p>
                 </div>
               </motion.div>
             </div>
