@@ -11,15 +11,17 @@ const stats = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen pt-20 lg:pt-0 overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative min-h-screen pt-20 lg:pt-0 overflow-hidden bg-[#0a1628]">
+      {/* Background Image with Strong Overlay */}
       <div className="absolute inset-0">
         <img 
           src={heroBg} 
           alt="" 
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628]/98 via-[#0a1628]/95 to-[#0a1628]/80" />
+        {/* Strong left-side gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/95 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1628] via-[#0a1628]/80 to-transparent" />
       </div>
       
       <div className="container mx-auto px-4 relative">
