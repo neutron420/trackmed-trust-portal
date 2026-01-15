@@ -14,12 +14,31 @@ const navLinks = [
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+      
+      // Determine active section based on scroll position
+      const sections = navLinks.map(link => link.href.replace("#", ""));
+      const navbarHeight = 80;
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section) {
+          const rect = section.getBoundingClientRect();
+          if (rect.top <= navbarHeight + 100) {
+            setActiveSection(sections[i]);
+            return;
+          }
+        }
+      }
+      setActiveSection("");
     };
+    
     window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Check initial position
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -28,7 +47,7 @@ export const Navbar = () => {
     const targetId = href.replace("#", "");
     const element = document.getElementById(targetId);
     if (element) {
-      const navbarHeight = 64; // Height of the fixed navbar
+      const navbarHeight = 64;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
         top: elementPosition - navbarHeight,
@@ -37,6 +56,8 @@ export const Navbar = () => {
     }
     setIsOpen(false);
   };
+
+  const isActive = (href: string) => activeSection === href.replace("#", "");
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -61,7 +82,11 @@ export const Navbar = () => {
                 key={link.label}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  isActive(link.href)
+                    ? "text-accent bg-accent/10"
+                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                }`}
               >
                 {link.label}
               </a>
@@ -100,7 +125,11 @@ export const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-muted-foreground hover:text-foreground hover:bg-muted transition-colors font-medium py-3 px-4 rounded-lg"
+                  className={`font-medium py-3 px-4 rounded-lg transition-colors ${
+                    isActive(link.href)
+                      ? "text-accent bg-accent/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
                   onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.label}
