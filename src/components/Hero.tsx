@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Package, Bell, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
 import { AnimatedCounter } from "./AnimatedCounter";
+import { DemoVideoModal } from "./DemoVideoModal";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
@@ -11,6 +13,8 @@ const stats = [
 ];
 
 export const Hero = () => {
+  const [showDemoModal, setShowDemoModal] = useState(false);
+
   return (
     <section className="relative min-h-screen overflow-hidden bg-[#0a1628]">
       {/* Background Image with Strong Overlay */}
@@ -70,10 +74,18 @@ export const Hero = () => {
                 Join Waitlist
                 <ArrowRight className="w-4 h-4" />
               </Button>
-              <Button variant="outline" size="lg" className="border-white/20 text-white hover:bg-white/10 hover:text-white">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-white/20 text-white hover:bg-white/10 hover:text-white"
+                onClick={() => setShowDemoModal(true)}
+              >
                 Watch Demo
               </Button>
             </motion.div>
+
+      {/* Demo Video Modal */}
+      <DemoVideoModal open={showDemoModal} onOpenChange={setShowDemoModal} />
 
             {/* Animated Stats */}
             <motion.div 
