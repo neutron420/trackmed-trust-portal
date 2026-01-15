@@ -5,7 +5,7 @@ const features = [
   {
     icon: ShieldCheck,
     title: "Real-Time Verification",
-    description: "Instant authenticity checks against our secure database. Know your medicine is genuine before you buy.",
+    description: "Instant authenticity checks against our secure database. Know your medicine is genuine.",
   },
   {
     icon: Bell,
@@ -15,7 +15,7 @@ const features = [
   {
     icon: CreditCard,
     title: "Secure Payments",
-    description: "PCI-compliant payment processing with end-to-end encryption. Your financial data stays protected.",
+    description: "PCI-compliant payment processing with end-to-end encryption for complete protection.",
   },
   {
     icon: Smartphone,
@@ -26,26 +26,26 @@ const features = [
 
 export const Features = () => {
   return (
-    <section id="features" className="py-20 lg:py-28 bg-background">
+    <section id="features" className="py-20 lg:py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
-          <p className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">Why TrackMed</p>
+          <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-3">Features</p>
           <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Built for Safety and Trust
+            Built for safety and trust
           </h2>
-          <p className="text-muted-foreground text-lg">
+          <p className="text-muted-foreground">
             Every feature designed to give you confidence in the medicines you take.
           </p>
         </ScrollReveal>
 
-        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" staggerDelay={0.08}>
+        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5" staggerDelay={0.08}>
           {features.map((feature) => (
             <StaggerItem key={feature.title}>
-              <div className="group h-full bg-card rounded-xl p-6 border border-border hover:border-accent/30 hover:shadow-md transition-all duration-200">
-                <div className="w-12 h-12 rounded-lg bg-primary/5 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors">
-                  <feature.icon className="w-6 h-6 text-primary" />
+              <div className="group h-full bg-card rounded-xl p-6 border border-border hover:border-accent/40 hover:shadow-md transition-all duration-200">
+                <div className="w-11 h-11 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/15 transition-colors">
+                  <feature.icon className="w-5 h-5 text-accent" />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-display font-semibold text-foreground mb-2">
                   {feature.title}
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">

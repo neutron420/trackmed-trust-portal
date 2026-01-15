@@ -5,9 +5,9 @@ import logo from "@/assets/trackmed-logo.png";
 
 const navLinks = [
   { label: "How It Works", href: "#how-it-works" },
+  { label: "Features", href: "#features" },
   { label: "For Business", href: "#business" },
   { label: "Security", href: "#security" },
-  { label: "App", href: "#app" },
 ];
 
 export const Navbar = () => {
@@ -24,23 +24,25 @@ export const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm" : "bg-transparent"
+      isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm border-b border-border" : "bg-transparent"
     }`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2">
-            <img src={logo} alt="TrackMed" className="h-8 w-auto" />
-            <span className="text-lg font-display font-bold text-foreground">TrackMed</span>
+            <img src={logo} alt="TrackMed" className="h-7 w-auto" />
+            <span className={`text-base font-display font-bold ${isScrolled ? 'text-foreground' : 'text-white'}`}>TrackMed</span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-7">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className={`text-sm font-medium transition-colors duration-200 ${
+                  isScrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/70 hover:text-white'
+                }`}
               >
                 {link.label}
               </a>
@@ -49,7 +51,7 @@ export const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className={isScrolled ? '' : 'text-white hover:bg-white/10'}>
               Sign In
             </Button>
             <Button variant="accent" size="sm">
@@ -59,7 +61,7 @@ export const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2 text-foreground"
+            className={`lg:hidden p-2 ${isScrolled ? 'text-foreground' : 'text-white'}`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -75,7 +77,7 @@ export const Navbar = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-3 px-2"
+                  className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium py-2.5 px-2"
                   onClick={() => setIsOpen(false)}
                 >
                   {link.label}
