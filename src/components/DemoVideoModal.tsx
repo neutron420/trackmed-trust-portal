@@ -15,36 +15,30 @@ export const DemoVideoModal = ({ open, onOpenChange }: DemoVideoModalProps) => {
         </DialogHeader>
         
         {/* Video Container */}
-        <div className="relative aspect-video w-full bg-gradient-to-br from-gray-900 to-black flex items-center justify-center">
-          {/* Placeholder for actual video - replace with real video embed */}
-          <div className="text-center px-8">
-            <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6 ring-4 ring-accent/10">
-              <Play className="w-8 h-8 text-accent ml-1" />
-            </div>
-            <h3 className="text-xl font-display font-bold text-white mb-2">
-              TrackMed Demo
-            </h3>
-            <p className="text-white/60 text-sm max-w-md mx-auto">
-              See how TrackMed protects you from counterfeit medicines with instant QR verification, 
-              real-time tracking, and smart safety alerts.
-            </p>
-            
-            {/* Demo Features Preview */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-              {[
-                { label: "Scan & Verify", time: "0:00" },
-                { label: "Track Orders", time: "0:45" },
-                { label: "Safety Alerts", time: "1:30" },
-                { label: "Find Pharmacy", time: "2:15" },
-              ].map((feature) => (
-                <div 
-                  key={feature.label}
-                  className="bg-white/5 rounded-lg p-3 border border-white/10 hover:bg-white/10 transition-colors cursor-pointer"
-                >
-                  <p className="text-xs text-white/40">{feature.time}</p>
-                  <p className="text-sm text-white font-medium">{feature.label}</p>
-                </div>
-              ))}
+        <div className="relative aspect-video w-full bg-gradient-to-br from-gray-900 to-black">
+          {/* YouTube Embed - Replace VIDEO_ID with your actual YouTube video ID */}
+          {/* Example: https://www.youtube.com/watch?v=VIDEO_ID */}
+          <iframe
+            className="w-full h-full"
+            src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1&mute=0&controls=1&rel=0&modestbranding=1"
+            title="TrackMed Demo Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+          
+          {/* Fallback if video doesn't load */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center pointer-events-none">
+            <div className="text-center px-8 opacity-0 hover:opacity-100 transition-opacity">
+              <div className="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mx-auto mb-6 ring-4 ring-accent/10">
+                <Play className="w-8 h-8 text-accent ml-1" />
+              </div>
+              <h3 className="text-xl font-display font-bold text-white mb-2">
+                TrackMed Demo
+              </h3>
+              <p className="text-white/60 text-sm max-w-md mx-auto">
+                See how TrackMed protects you from counterfeit medicines with instant QR verification, 
+                real-time tracking, and smart safety alerts.
+              </p>
             </div>
           </div>
           

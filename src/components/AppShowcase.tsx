@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { ScrollReveal } from "./ScrollReveal";
 import { motion } from "framer-motion";
 import { 
   QrCode, ShieldCheck, Package, Bell, Search, MapPin, 
   MessageCircle, Send, CreditCard, Pill, Clock, Heart,
-  User, CheckCircle2, IndianRupee
+  User, CheckCircle2, IndianRupee, Smartphone, Building2, Lightbulb, Sparkles
 } from "lucide-react";
+import { ScreenModal } from "./ScreenModal";
 
 const screens = [
   {
@@ -158,8 +160,9 @@ const screens = [
             <div className="w-6 h-6 rounded-full bg-violet-100 flex items-center justify-center flex-shrink-0">
               <User className="w-3 h-3 text-violet-600" />
             </div>
-            <div className="bg-gray-100 rounded-xl rounded-tl-sm p-2.5 max-w-[85%]">
-              <p className="text-[11px] text-gray-700">Your order is ready for pickup! 🎉</p>
+            <div className="bg-gray-100 rounded-xl rounded-tl-sm p-2.5 max-w-[85%] flex items-center gap-1.5">
+              <p className="text-[11px] text-gray-700">Your order is ready for pickup!</p>
+              <Sparkles className="w-3 h-3 text-violet-600" />
             </div>
           </div>
         </div>
@@ -225,12 +228,12 @@ const screens = [
         </div>
         <div className="space-y-2">
           {[
-            { method: "UPI", icon: "📱", selected: true },
-            { method: "Credit/Debit Card", icon: "💳", selected: false },
-            { method: "Net Banking", icon: "🏦", selected: false },
+            { method: "UPI", icon: Smartphone, selected: true },
+            { method: "Credit/Debit Card", icon: CreditCard, selected: false },
+            { method: "Net Banking", icon: Building2, selected: false },
           ].map((option) => (
             <div key={option.method} className={`flex items-center gap-3 p-2.5 rounded-xl border ${option.selected ? "border-indigo-500 bg-indigo-50" : "border-gray-100 bg-white"}`}>
-              <span className="text-sm">{option.icon}</span>
+              <option.icon className="w-4 h-4 text-gray-600" />
               <span className="text-xs font-medium text-gray-700">{option.method}</span>
               {option.selected && <CheckCircle2 className="w-4 h-4 text-indigo-500 ml-auto" />}
             </div>
@@ -269,8 +272,9 @@ const screens = [
             <p className="text-[10px] text-muted-foreground">Medications</p>
           </div>
         </div>
-        <div className="bg-pink-500/10 rounded-xl p-2.5 border border-pink-200">
-          <p className="text-[11px] text-pink-700 font-medium">💡 Tip: Take Vitamin D with food for better absorption</p>
+        <div className="bg-pink-500/10 rounded-xl p-2.5 border border-pink-200 flex items-start gap-2">
+          <Lightbulb className="w-3.5 h-3.5 text-pink-600 mt-0.5 flex-shrink-0" />
+          <p className="text-[11px] text-pink-700 font-medium">Tip: Take Vitamin D with food for better absorption</p>
         </div>
       </div>
     ),
@@ -278,30 +282,39 @@ const screens = [
 ];
 
 // Phone Mockup Component matching reference design
-const PhoneMockup = ({ screen, index }: { screen: typeof screens[0]; index: number }) => {
+const PhoneMockup = ({ 
+  screen, 
+  index, 
+  onClick 
+}: { 
+  screen: typeof screens[0]; 
+  index: number;
+  onClick: () => void;
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
-      className="group"
+      className="group cursor-pointer"
+      onClick={onClick}
     >
-      {/* Phone Frame - Realistic iPhone style */}
+      {/* Phone Frame - Realistic iPhone style with better details */}
       <div className="relative mx-auto" style={{ width: "260px" }}>
-        {/* Outer frame */}
-        <div className="bg-[#1a1a1a] rounded-[3rem] p-[3px] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25),0_0_0_1px_rgba(0,0,0,0.1)] group-hover:shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] transition-all duration-500 group-hover:-translate-y-2">
-          {/* Inner bezel */}
-          <div className="bg-[#2a2a2a] rounded-[2.75rem] p-[2px]">
-            {/* Screen */}
-            <div className="bg-white rounded-[2.6rem] overflow-hidden">
+        {/* Outer frame with realistic gradient and shadows */}
+        <div className="bg-gradient-to-b from-[#1a1a1a] via-[#151515] to-[#0a0a0a] rounded-[3rem] p-[4px] shadow-[0_30px_60px_-15px_rgba(0,0,0,0.4),0_0_0_1px_rgba(255,255,255,0.05),inset_0_1px_0_rgba(255,255,255,0.1)] group-hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.5),0_0_0_1px_rgba(255,255,255,0.1)] transition-all duration-500 group-hover:-translate-y-3 group-hover:scale-[1.02]">
+          {/* Inner bezel with metallic look */}
+          <div className="bg-gradient-to-b from-[#2a2a2a] to-[#1f1f1f] rounded-[2.8rem] p-[3px]">
+            {/* Screen with realistic reflection */}
+            <div className="bg-white rounded-[2.7rem] overflow-hidden relative shadow-inner">
               <div className="h-[460px] bg-gradient-to-b from-gray-50 to-white relative">
-                {/* Status Bar */}
-                <div className="flex justify-between items-center px-6 pt-3 pb-2">
+                {/* Status Bar with better styling */}
+                <div className="flex justify-between items-center px-6 pt-3 pb-2 bg-white">
                   <span className="text-[11px] font-semibold text-gray-900">9:41</span>
-                  {/* Notch / Dynamic Island */}
+                  {/* Notch / Dynamic Island - more realistic */}
                   <div className="absolute left-1/2 -translate-x-1/2 top-2.5">
-                    <div className="w-[90px] h-[26px] bg-black rounded-full flex items-center justify-center gap-2">
+                    <div className="w-[90px] h-[26px] bg-black rounded-full flex items-center justify-center gap-2 shadow-lg">
                       <div className="w-2 h-2 rounded-full bg-[#1a1a1a] ring-1 ring-gray-800" />
                       <div className="w-1 h-1 rounded-full bg-gray-800" />
                     </div>
@@ -337,23 +350,32 @@ const PhoneMockup = ({ screen, index }: { screen: typeof screens[0]; index: numb
                   {screen.content}
                 </div>
 
-                {/* Home Indicator */}
-                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-gray-300 rounded-full" />
+                {/* Home Indicator - more realistic */}
+                <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gray-300 rounded-full shadow-sm" />
+                {/* Screen reflection overlay for realism */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-white/20 to-transparent rounded-t-[2.7rem]" />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Description */}
-      <p className="text-sm text-muted-foreground mt-5 text-center leading-relaxed max-w-[240px] mx-auto">
+      {/* Description with click hint */}
+      <p className="text-sm text-muted-foreground mt-5 text-center leading-relaxed max-w-[240px] mx-auto group-hover:text-foreground transition-colors">
         {screen.description}
+      </p>
+      <p className="text-xs text-accent mt-2 text-center opacity-0 group-hover:opacity-100 transition-opacity">
+        Click to view full screen
       </p>
     </motion.div>
   );
 };
 
 export const AppShowcase = () => {
+  const [selectedScreen, setSelectedScreen] = useState<typeof screens[0] | null>(null);
+
   return (
     <section className="py-20 lg:py-28 bg-gradient-to-b from-background via-muted/30 to-background overflow-hidden">
       <div className="container mx-auto px-4">
@@ -370,17 +392,36 @@ export const AppShowcase = () => {
         {/* First row - 4 screens */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 mb-12">
           {screens.slice(0, 4).map((screen, index) => (
-            <PhoneMockup key={screen.title} screen={screen} index={index} />
+            <PhoneMockup 
+              key={screen.title} 
+              screen={screen} 
+              index={index}
+              onClick={() => setSelectedScreen(screen)}
+            />
           ))}
         </div>
 
         {/* Second row - 4 screens */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
           {screens.slice(4, 8).map((screen, index) => (
-            <PhoneMockup key={screen.title} screen={screen} index={index + 4} />
+            <PhoneMockup 
+              key={screen.title} 
+              screen={screen} 
+              index={index + 4}
+              onClick={() => setSelectedScreen(screen)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Screen Modal */}
+      {selectedScreen && (
+        <ScreenModal
+          open={!!selectedScreen}
+          onOpenChange={(open) => !open && setSelectedScreen(null)}
+          screen={selectedScreen}
+        />
+      )}
     </section>
   );
 };
