@@ -5,69 +5,60 @@ const steps = [
   {
     icon: QrCode,
     step: "01",
-    title: "Scan QR Code",
-    description: "Point your phone camera at the QR code on any medicine package to instantly access its verification data.",
+    title: "Scan the QR Code",
+    description: "Point your camera at the QR code on any medicine packaging. Our app recognizes it instantly.",
   },
   {
     icon: ShieldCheck,
-    step: "02", 
+    step: "02",
     title: "Verify Authenticity",
-    description: "Get real-time confirmation that your medicine is genuine, with full batch history and manufacturer details.",
+    description: "Receive real-time verification with batch details, manufacturer info, and expiry date.",
   },
   {
     icon: Truck,
     step: "03",
-    title: "Buy & Track",
-    description: "Purchase with confidence and track your order in real-time with push notifications at every step.",
+    title: "Buy, Track & Stay Safe",
+    description: "Purchase with confidence, track your order, and get alerts for recalls or safety updates.",
   },
 ];
 
 export const HowItWorks = () => {
   return (
-    <section id="how-it-works" className="py-24 bg-background">
+    <section id="how-it-works" className="py-20 lg:py-28 bg-card">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Simple Process
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            How TrackMed Works
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">How It Works</p>
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Three Steps to Verified Medicine
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Three simple steps to verify and purchase authentic medicines with complete peace of mind.
+          <p className="text-muted-foreground text-lg">
+            Simple, fast, and reliable. Protect yourself and your family with instant verification.
           </p>
         </ScrollReveal>
 
-        {/* Steps */}
-        <StaggerContainer className="grid md:grid-cols-3 gap-8 lg:gap-12" staggerDelay={0.15}>
+        <StaggerContainer className="grid md:grid-cols-3 gap-8 lg:gap-12" staggerDelay={0.1}>
           {steps.map((step, index) => (
             <StaggerItem key={step.step}>
-              <div className="relative group">
-                {/* Connector Line */}
+              <div className="relative text-center">
+                {/* Connector */}
                 {index < steps.length - 1 && (
-                  <div className="hidden md:block absolute top-16 left-1/2 w-full h-0.5 bg-gradient-to-r from-accent/50 to-transparent" />
+                  <div className="hidden md:block absolute top-10 left-[calc(50%+3rem)] w-[calc(100%-6rem)] h-px bg-border" />
                 )}
-
-                <div className="relative bg-card rounded-2xl p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 group-hover:-translate-y-1">
-                  {/* Step Number */}
-                  <div className="absolute -top-4 left-8 px-3 py-1 bg-accent text-accent-foreground text-sm font-bold rounded-full">
+                
+                {/* Step Number */}
+                <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl gradient-primary mb-6 relative">
+                  <step.icon className="w-8 h-8 text-primary-foreground" />
+                  <span className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-accent text-accent-foreground text-xs font-bold flex items-center justify-center">
                     {step.step}
-                  </div>
-
-                  {/* Icon */}
-                  <div className="w-16 h-16 rounded-2xl gradient-hero flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-8 h-8 text-primary-foreground" />
-                  </div>
-
-                  {/* Content */}
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
+                  </span>
                 </div>
+
+                <h3 className="font-display text-xl font-bold text-foreground mb-3">
+                  {step.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed max-w-xs mx-auto">
+                  {step.description}
+                </p>
               </div>
             </StaggerItem>
           ))}

@@ -5,78 +5,70 @@ const securityFeatures = [
   {
     icon: Shield,
     title: "Tamper-Proof QR Codes",
-    description: "Cryptographically secured QR codes that cannot be duplicated or forged. Each scan is verified against our blockchain-backed database.",
+    description: "Cryptographically secured codes that cannot be duplicated. Each scan is verified against our protected database.",
   },
   {
     icon: Lock,
     title: "PCI-DSS Compliant",
-    description: "Your payment information is protected with bank-level security. We never store sensitive card data on our servers.",
+    description: "Bank-level payment security. We never store sensitive card data on our servers.",
   },
   {
     icon: FileCheck,
-    title: "Complete Audit Trail",
-    description: "Every scan, purchase, and verification is logged immutably. Perfect for regulatory compliance and dispute resolution.",
+    title: "Immutable Audit Trail",
+    description: "Every verification and transaction is logged for regulatory compliance and dispute resolution.",
   },
   {
     icon: Eye,
-    title: "Privacy First",
-    description: "Your health data belongs to you. We use anonymized analytics and never sell personal information to third parties.",
+    title: "Privacy Protected",
+    description: "Your health data stays private. We use anonymized analytics and never sell personal information.",
   },
 ];
 
 export const Security = () => {
   return (
-    <section id="security" className="py-24 gradient-subtle">
+    <section id="security" className="py-20 lg:py-28 bg-background">
       <div className="container mx-auto px-4">
-        {/* Section Header */}
-        <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
-            Security & Compliance
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Enterprise-Grade Security
-          </h2>
-          <p className="text-lg text-muted-foreground">
-            Built from the ground up with security and compliance in mind. 
-            Your data and transactions are protected at every step.
-          </p>
-        </ScrollReveal>
+        <div className="max-w-4xl mx-auto">
+          <ScrollReveal className="text-center mb-14">
+            <p className="text-sm font-semibold text-accent uppercase tracking-wide mb-3">Security & Compliance</p>
+            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Enterprise-Grade Protection
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Built from the ground up with security and regulatory compliance at its core.
+            </p>
+          </ScrollReveal>
 
-        {/* Security Cards */}
-        <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto" staggerDelay={0.12}>
-          {securityFeatures.map((feature) => (
-            <StaggerItem key={feature.title}>
-              <div className="group flex gap-5 bg-card rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 hover:-translate-y-1 h-full">
-                {/* Icon */}
-                <div className="w-14 h-14 rounded-xl gradient-hero flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                  <feature.icon className="w-7 h-7 text-primary-foreground" />
+          <StaggerContainer className="grid md:grid-cols-2 gap-6" staggerDelay={0.1}>
+            {securityFeatures.map((feature) => (
+              <StaggerItem key={feature.title}>
+                <div className="flex gap-4 bg-card rounded-xl p-6 border border-border hover:border-primary/30 transition-colors">
+                  <div className="w-12 h-12 rounded-lg gradient-primary flex items-center justify-center flex-shrink-0">
+                    <feature.icon className="w-6 h-6 text-primary-foreground" />
+                  </div>
+                  <div>
+                    <h3 className="font-display font-semibold text-foreground mb-1">
+                      {feature.title}
+                    </h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {feature.description}
+                    </p>
+                  </div>
                 </div>
-
-                {/* Content */}
-                <div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
-
-        {/* Trust Badges */}
-        <ScrollReveal delay={0.3} className="mt-16 text-center">
-          <p className="text-sm text-muted-foreground mb-6">Trusted by leading healthcare organizations</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12 opacity-60">
-            {["PharmaCorp", "MedSupply", "HealthNet", "CareFirst", "WellRx"].map((name) => (
-              <div key={name} className="text-xl font-bold text-muted-foreground/50">
-                {name}
-              </div>
+              </StaggerItem>
             ))}
-          </div>
-        </ScrollReveal>
+          </StaggerContainer>
+
+          {/* Compliance badges */}
+          <ScrollReveal delay={0.3} className="mt-12 text-center">
+            <div className="inline-flex flex-wrap justify-center gap-6 px-6 py-4 bg-muted/50 rounded-lg">
+              <span className="text-xs font-semibold text-muted-foreground">SOC 2 Type II</span>
+              <span className="text-xs font-semibold text-muted-foreground">HIPAA Ready</span>
+              <span className="text-xs font-semibold text-muted-foreground">PCI-DSS Level 1</span>
+              <span className="text-xs font-semibold text-muted-foreground">GDPR Compliant</span>
+            </div>
+          </ScrollReveal>
+        </div>
       </div>
     </section>
   );
