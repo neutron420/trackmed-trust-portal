@@ -1,17 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Package, Bell, ShieldCheck } from "lucide-react";
 import { motion } from "framer-motion";
+import { AnimatedCounter } from "./AnimatedCounter";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
-  { value: "2.4M+", label: "Authentications" },
-  { value: "45K+", label: "Batches Tracked" },
-  { value: "850+", label: "Partner Pharmacies" },
+  { value: 2400000, suffix: "+", label: "Authentications" },
+  { value: 45000, suffix: "+", label: "Batches Tracked" },
+  { value: 850, suffix: "+", label: "Partner Pharmacies" },
 ];
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen pt-20 lg:pt-0 overflow-hidden bg-[#0a1628]">
+    <section className="relative min-h-screen overflow-hidden bg-[#0a1628]">
       {/* Background Image with Strong Overlay */}
       <div className="absolute inset-0">
         <img 
@@ -25,7 +26,7 @@ export const Hero = () => {
       </div>
       
       <div className="container mx-auto px-4 relative">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center min-h-screen py-24 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-screen pt-24 pb-16 lg:pt-32 lg:pb-24">
           {/* Left Content */}
           <div className="max-w-xl">
             <motion.div 
@@ -74,7 +75,7 @@ export const Hero = () => {
               </Button>
             </motion.div>
 
-            {/* Stats */}
+            {/* Animated Stats */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -84,7 +85,11 @@ export const Hero = () => {
               {stats.map((stat) => (
                 <div key={stat.label}>
                   <div className="text-2xl lg:text-3xl font-display font-bold text-white">
-                    {stat.value}
+                    <AnimatedCounter 
+                      end={stat.value} 
+                      suffix={stat.suffix}
+                      duration={2.5}
+                    />
                   </div>
                   <div className="text-sm text-white/40">{stat.label}</div>
                 </div>
@@ -97,15 +102,15 @@ export const Hero = () => {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative flex justify-center lg:justify-end"
+            className="relative flex justify-center lg:justify-end mt-8 lg:mt-16"
           >
             <div className="relative">
               {/* Phone Frame - Larger with better shadows */}
-              <div className="relative w-[300px] md:w-[340px] animate-float">
+              <div className="relative w-[280px] md:w-[320px] animate-float">
                 <div className="bg-gray-900 rounded-[3rem] p-2.5 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5),0_30px_60px_-30px_rgba(0,0,0,0.4)] ring-1 ring-white/20">
                   <div className="bg-white rounded-[2.5rem] overflow-hidden">
                     {/* Screen Content */}
-                    <div className="h-[620px] bg-gradient-to-b from-gray-50 to-white p-5">
+                    <div className="h-[560px] bg-gradient-to-b from-gray-50 to-white p-5">
                       {/* Status Bar */}
                       <div className="flex justify-between items-center text-[10px] text-gray-400 mb-5">
                         <span className="font-medium">9:41</span>
@@ -178,7 +183,7 @@ export const Hero = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 0.8 }}
-                className="absolute -left-12 top-1/4 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float-slow"
+                className="absolute -left-8 top-1/3 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float-slow"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full gradient-accent flex items-center justify-center shadow-md">
@@ -196,7 +201,7 @@ export const Hero = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: 1 }}
-                className="absolute -right-8 bottom-1/4 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float"
+                className="absolute -right-6 bottom-1/4 bg-white rounded-2xl p-4 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.2)] border border-gray-100 hidden md:block animate-float"
               >
                 <div className="text-center">
                   <p className="text-2xl font-display font-bold text-accent">99.9%</p>
