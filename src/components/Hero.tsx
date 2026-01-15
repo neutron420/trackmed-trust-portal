@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, QrCode, Package, Bell } from "lucide-react";
+import { motion } from "framer-motion";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const stats = [
   { value: "2.5M+", label: "Medicines Verified" },
@@ -9,34 +11,59 @@ const stats = [
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen pt-20 lg:pt-24 overflow-hidden gradient-subtle">
-      {/* Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-3xl" />
+    <section className="relative min-h-screen pt-20 lg:pt-24 overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img 
+          src={heroBg} 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center min-h-[calc(100vh-6rem)]">
           {/* Left Content */}
           <div className="space-y-8 text-center lg:text-left">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent animate-fade-up">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent"
+            >
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
               <span className="text-sm font-medium">Trusted by 1,200+ pharmacies</span>
-            </div>
+            </motion.div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight animate-fade-up animation-delay-100">
+            <motion.h1 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+            >
               <span className="text-foreground">Verify Every Medicine.</span>
               <br />
               <span className="text-gradient">Trust Every Purchase.</span>
-            </h1>
+            </motion.h1>
 
-            <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 animate-fade-up animation-delay-200">
+            <motion.p 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0"
+            >
               TrackMed connects consumers, pharmacies, and manufacturers through 
               secure QR verification. Know your medicine is authentic before you buy.
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start animate-fade-up animation-delay-300">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+            >
               <Button variant="hero" size="xl">
                 Try Demo
                 <ArrowRight className="w-5 h-5" />
@@ -44,24 +71,40 @@ export const Hero = () => {
               <Button variant="outline" size="xl">
                 Explore Medicines
               </Button>
-            </div>
+            </motion.div>
 
             {/* Stats Strip */}
-            <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border/50 animate-fade-up animation-delay-400">
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center lg:text-left">
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-3 gap-6 pt-8 border-t border-border/50"
+            >
+              {stats.map((stat, index) => (
+                <motion.div 
+                  key={stat.label} 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
+                  className="text-center lg:text-left"
+                >
                   <div className="text-2xl md:text-3xl font-bold text-foreground">
                     {stat.value}
                   </div>
                   <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* Right Content - Phone Mockup */}
           <div className="relative flex justify-center lg:justify-end">
-            <div className="relative floating-animation">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative floating-animation"
+            >
               {/* Main Phone */}
               <div className="relative w-72 md:w-80 h-[580px] md:h-[620px] bg-foreground rounded-[3rem] p-3 shadow-float">
                 <div className="w-full h-full bg-card rounded-[2.5rem] overflow-hidden relative">
@@ -111,7 +154,12 @@ export const Hero = () => {
               </div>
 
               {/* Floating Card 1 */}
-              <div className="absolute -left-16 top-1/4 w-48 bg-card rounded-xl p-4 shadow-float floating-animation-delayed hidden md:block">
+              <motion.div 
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="absolute -left-16 top-1/4 w-48 bg-card rounded-xl p-4 shadow-float floating-animation-delayed hidden md:block"
+              >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full gradient-accent flex items-center justify-center">
                     <Bell className="w-5 h-5 text-accent-foreground" />
@@ -121,16 +169,21 @@ export const Hero = () => {
                     <p className="text-xs text-muted-foreground">Out for delivery</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               {/* Floating Card 2 */}
-              <div className="absolute -right-12 bottom-1/3 w-44 bg-card rounded-xl p-4 shadow-float floating-animation hidden md:block">
+              <motion.div 
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="absolute -right-12 bottom-1/3 w-44 bg-card rounded-xl p-4 shadow-float floating-animation hidden md:block"
+              >
                 <div className="text-center">
                   <div className="text-2xl font-bold text-accent">100%</div>
                   <p className="text-xs text-muted-foreground">Verified Safe</p>
                 </div>
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </div>

@@ -1,4 +1,5 @@
 import { ShieldCheck, Bell, CreditCard, Zap, Clock, Globe } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 
 const features = [
   {
@@ -38,7 +39,7 @@ export const Features = () => {
     <section id="features" className="py-24 gradient-subtle">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
             Why TrackMed
           </span>
@@ -48,31 +49,29 @@ export const Features = () => {
           <p className="text-lg text-muted-foreground">
             Every feature is designed to give you confidence in the medicines you take and the pharmacies you trust.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Feature Cards */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {features.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group bg-card rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 hover:-translate-y-1 animate-fade-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors duration-300">
-                <feature.icon className="w-7 h-7 text-accent" />
-              </div>
+        <StaggerContainer className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8" staggerDelay={0.1}>
+          {features.map((feature) => (
+            <StaggerItem key={feature.title}>
+              <div className="group bg-card rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 hover:-translate-y-1 h-full">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-xl bg-accent/10 flex items-center justify-center mb-5 group-hover:bg-accent/20 transition-colors duration-300">
+                  <feature.icon className="w-7 h-7 text-accent" />
+                </div>
 
-              {/* Content */}
-              <h3 className="text-lg font-bold text-foreground mb-2">
-                {feature.title}
-              </h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </div>
+                {/* Content */}
+                <h3 className="text-lg font-bold text-foreground mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </div>
     </section>
   );

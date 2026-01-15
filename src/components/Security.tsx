@@ -1,4 +1,5 @@
 import { Shield, Lock, FileCheck, Eye } from "lucide-react";
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal";
 
 const securityFeatures = [
   {
@@ -28,7 +29,7 @@ export const Security = () => {
     <section id="security" className="py-24 gradient-subtle">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        <ScrollReveal className="text-center max-w-2xl mx-auto mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4">
             Security & Compliance
           </span>
@@ -39,36 +40,34 @@ export const Security = () => {
             Built from the ground up with security and compliance in mind. 
             Your data and transactions are protected at every step.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Security Cards */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
-          {securityFeatures.map((feature, index) => (
-            <div
-              key={feature.title}
-              className="group flex gap-5 bg-card rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 hover:-translate-y-1 animate-fade-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              {/* Icon */}
-              <div className="w-14 h-14 rounded-xl gradient-hero flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <feature.icon className="w-7 h-7 text-primary-foreground" />
-              </div>
+        <StaggerContainer className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto" staggerDelay={0.12}>
+          {securityFeatures.map((feature) => (
+            <StaggerItem key={feature.title}>
+              <div className="group flex gap-5 bg-card rounded-2xl p-6 lg:p-8 shadow-card hover:shadow-card-hover transition-all duration-300 border border-border/50 hover:-translate-y-1 h-full">
+                {/* Icon */}
+                <div className="w-14 h-14 rounded-xl gradient-hero flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                  <feature.icon className="w-7 h-7 text-primary-foreground" />
+                </div>
 
-              {/* Content */}
-              <div>
-                <h3 className="text-lg font-bold text-foreground mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {feature.description}
-                </p>
+                {/* Content */}
+                <div>
+                  <h3 className="text-lg font-bold text-foreground mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
         {/* Trust Badges */}
-        <div className="mt-16 text-center">
+        <ScrollReveal delay={0.3} className="mt-16 text-center">
           <p className="text-sm text-muted-foreground mb-6">Trusted by leading healthcare organizations</p>
           <div className="flex flex-wrap justify-center items-center gap-8 lg:gap-12 opacity-60">
             {["PharmaCorp", "MedSupply", "HealthNet", "CareFirst", "WellRx"].map((name) => (
@@ -77,7 +76,7 @@ export const Security = () => {
               </div>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
